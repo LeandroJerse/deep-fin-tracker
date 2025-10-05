@@ -36,10 +36,10 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
   useEffect(() => {
     if (!mapContainer.current || mapRef.current) return
 
-    // Criar mapa
+    // Criar mapa com zoom mais afastado
     const map = L.map(mapContainer.current, {
       center: [-15, -40], // Centro do Brasil
-      zoom: 4,
+      zoom: 3, // Zoom mais afastado (era 4)
       zoomControl: true,
     })
 
@@ -110,30 +110,39 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
 
       const color = getBehaviorColor(shark.Comportamento)
       
-      // Criar ícone customizado
+      // Criar ícone customizado com formato de tubarão
       const icon = L.divIcon({
         className: 'custom-shark-marker',
         html: `
           <div style="
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
+            width: 45px;
+            height: 45px;
             background-color: ${color};
             border: 3px solid white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             transition: transform 0.2s ease;
+            cursor: pointer;
           ">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+            <svg 
+              width="28" 
+              height="28" 
+              viewBox="0 0 512 512" 
+              fill="white"
+              style="transform: rotate(45deg);"
+            >
+              <!-- Ícone de tubarão SVG -->
+              <path d="M120.6 153.3L96 128l24.6-25.3c6.2-6.4 16.4-6.4 22.6 0l25.3 26 25.3-26c6.2-6.4 16.4-6.4 22.6 0L241 128l-24.6 25.3c-6.2 6.4-16.4 6.4-22.6 0l-25.3-26-25.3 26c-6.2 6.4-16.4 6.4-22.6 0zM313.4 102.7c6.2-6.4 16.4-6.4 22.6 0l25.3 26 25.3-26c6.2-6.4 16.4-6.4 22.6 0L434 128l-24.6 25.3c-6.2 6.4-16.4 6.4-22.6 0l-25.3-26-25.3 26c-6.2 6.4-16.4 6.4-22.6 0L289 128l24.4-25.3zM256 224c-17.7 0-32 14.3-32 32c0 13.3 10.7 24 24 24h272c13.3 0 24-10.7 24-24c0-17.7-14.3-32-32-32H256zM196.8 371.2C164.7 403.3 148.7 448 148.7 496c0 8.8 7.2 16 16 16s16-7.2 16-16c0-39.1 13-75.7 38.1-104.7c6.3-7.3 5.5-18.3-1.8-24.6s-18.3-5.5-24.6 1.8c.4-.4.8-.8 1.2-1.2z"/>
             </svg>
           </div>
         `,
-        iconSize: [36, 36],
-        iconAnchor: [18, 18],
-        popupAnchor: [0, -18]
+        iconSize: [45, 45],
+        iconAnchor: [22, 22],
+        popupAnchor: [0, -25]
       })
 
       // Criar popup com verificações de segurança
@@ -216,8 +225,8 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
     // Ajustar zoom para mostrar todos os marcadores (apenas se houver marcadores válidos)
     if (markersRef.current.length > 0 && bounds.isValid()) {
       mapRef.current.fitBounds(bounds, {
-        padding: [50, 50],
-        maxZoom: 15
+        padding: [80, 80], // Mais espaço nas bordas
+        maxZoom: 8 // Zoom máximo mais afastado (era 15)
       })
       setHasValidSharks(true)
     } else if (filteredSharks.length > 0 && markersRef.current.length === 0) {
@@ -235,8 +244,20 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
           background: transparent !important;
           border: none !important;
         }
+        .custom-shark-marker > div {
+          animation: float 3s ease-in-out infinite;
+        }
         .custom-shark-marker > div:hover {
-          transform: scale(1.2);
+          transform: rotate(-45deg) scale(1.3) !important;
+          animation: none;
+        }
+        @keyframes float {
+          0%, 100% {
+            transform: rotate(-45deg) translateY(0px);
+          }
+          50% {
+            transform: rotate(-45deg) translateY(-5px);
+          }
         }
         .shark-popup .leaflet-popup-content-wrapper {
           border-radius: 12px;
