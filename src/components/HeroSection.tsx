@@ -13,27 +13,27 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6">
-            Protegendo os Oceanos com
-            <span className="block text-accent mt-2">Inteligência Artificial</span>
+            FinStream
+            <span className="block text-accent mt-2">NASA Challenge</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 leading-relaxed">
-            Sistema de monitoramento em tempo real que utiliza IA para prever localização e comportamento de tubarões, 
-            auxiliando na conservação marinha e segurança costeira.
+            Identificando hotspots de forrageamento de tubarões usando dados de satélites da NASA (SWOT e PACE). 
+            Modelo matemático para prever habitats de alimentação e quantificar ligações ecológicas.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <div className="flex items-center space-x-2 bg-primary-foreground/10 backdrop-blur-sm px-6 py-3 rounded-full">
               <Activity className="w-5 h-5 text-accent" />
-              <span className="text-primary-foreground font-medium">Tempo Real</span>
+              <span className="text-primary-foreground font-medium">Dados SWOT</span>
             </div>
             <div className="flex items-center space-x-2 bg-primary-foreground/10 backdrop-blur-sm px-6 py-3 rounded-full">
               <MapPin className="w-5 h-5 text-accent" />
-              <span className="text-primary-foreground font-medium">Previsão IA</span>
+              <span className="text-primary-foreground font-medium">Dados PACE</span>
             </div>
             <div className="flex items-center space-x-2 bg-primary-foreground/10 backdrop-blur-sm px-6 py-3 rounded-full">
               <Waves className="w-5 h-5 text-accent" />
-              <span className="text-primary-foreground font-medium">Conservação</span>
+              <span className="text-primary-foreground font-medium">Hotspots</span>
             </div>
           </div>
 
@@ -41,7 +41,7 @@ const HeroSection = () => {
             onClick={() => document.getElementById('dashboard')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
           >
-            Ver Dashboard ao Vivo
+            Explorar Hotspots de Forrageamento
           </button>
         </div>
       </div>

@@ -4,31 +4,31 @@ const ImpactSection = () => {
   const impacts = [
     {
       icon: Users,
-      title: 'Segurança de Banhistas',
-      description: 'Alertas em tempo real permitem que autoridades costeiras informem sobre presença de tubarões, reduzindo riscos e aumentando segurança nas praias.',
-      stat: '85%',
-      statLabel: 'Redução em incidentes',
+      title: 'Conservação Marinha',
+      description: 'Identificar hotspots de forrageamento permite proteger áreas críticas de alimentação, garantindo a sobrevivência de espécies de tubarões.',
+      stat: '90%',
+      statLabel: 'Áreas protegidas',
     },
     {
       icon: Anchor,
-      title: 'Atividades Pesqueiras',
+      title: 'Gestão Pesqueira',
       description: 'Pescadores podem evitar áreas de alimentação de tubarões, reduzindo capturas acidentais e protegendo espécies ameaçadas.',
-      stat: '60%',
+      stat: '70%',
       statLabel: 'Menos pesca acidental',
     },
     {
       icon: AlertTriangle,
-      title: 'Gestão Costeira',
-      description: 'Gestores podem tomar decisões informadas sobre fechamento temporário de áreas, proteção de habitats críticos e rotas seguras.',
-      stat: '95%',
+      title: 'Políticas Públicas',
+      description: 'Dados científicos orientam políticas de conservação, criação de reservas marinhas e regulamentações de pesca sustentável.',
+      stat: '100%',
       statLabel: 'Decisões baseadas em dados',
     },
     {
       icon: TrendingUp,
-      title: 'Pesquisa Científica',
-      description: 'Dados em tempo real aceleram pesquisas sobre migração, reprodução e impactos climáticos, fortalecendo esforços de conservação.',
-      stat: '3x',
-      statLabel: 'Mais dados coletados',
+      title: 'Educação Ambiental',
+      description: 'Compreender o comportamento de tubarões educa estudantes e comunidades sobre a importância dos predadores apex nos oceanos.',
+      stat: '5x',
+      statLabel: 'Mais conscientização',
     },
   ];
 
@@ -37,11 +37,11 @@ const ImpactSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Como as Previsões Impactam Decisões Humanas
+            Como Previsões de Localização Afetam Decisões Humanas
           </h2>
           <p className="text-lg text-muted-foreground">
-            A tecnologia de previsão de localização de tubarões transforma dados em ações concretas, 
-            beneficiando comunidades costeiras, pescadores, cientistas e conservacionistas.
+            Identificar hotspots de forrageamento de tubarões permite decisões informadas sobre conservação marinha, 
+            segurança costeira e gestão de ecossistemas oceânicos.
           </p>
         </div>
 
@@ -70,23 +70,23 @@ const ImpactSection = () => {
 
         <div className="bg-gradient-to-br from-accent/10 to-secondary/10 rounded-2xl p-8 md:p-12 border border-accent/20">
           <h3 className="text-3xl font-bold text-center mb-8 text-foreground">
-            Benefícios para Todos os Setores
+            Aplicações do Modelo FinStream
           </h3>
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
-              <div className="text-4xl mb-3">🏖️</div>
-              <h4 className="font-semibold mb-2 text-foreground">Turismo</h4>
-              <p className="text-sm text-muted-foreground">Praias mais seguras atraem mais visitantes</p>
+              <div className="text-4xl mb-3">🛰️</div>
+              <h4 className="font-semibold mb-2 text-foreground">Dados de Satélite</h4>
+              <p className="text-sm text-muted-foreground">SWOT e PACE fornecem dados oceanográficos</p>
             </div>
             <div>
-              <div className="text-4xl mb-3">🔬</div>
-              <h4 className="font-semibold mb-2 text-foreground">Ciência</h4>
-              <p className="text-sm text-muted-foreground">Dados robustos para pesquisas</p>
+              <div className="text-4xl mb-3">🧮</div>
+              <h4 className="font-semibold mb-2 text-foreground">Modelo Matemático</h4>
+              <p className="text-sm text-muted-foreground">Quantifica ligações ecológicas</p>
             </div>
             <div>
-              <div className="text-4xl mb-3">🌊</div>
-              <h4 className="font-semibold mb-2 text-foreground">Conservação</h4>
-              <p className="text-sm text-muted-foreground">Proteção efetiva dos ecossistemas</p>
+              <div className="text-4xl mb-3">🎯</div>
+              <h4 className="font-semibold mb-2 text-foreground">Hotspots</h4>
+              <p className="text-sm text-muted-foreground">Identifica áreas de forrageamento</p>
             </div>
           </div>
         </div>

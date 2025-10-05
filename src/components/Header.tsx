@@ -16,10 +16,10 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-3">
-            <img src={sharkLogo} alt="Shark Tracker" className="w-10 h-10 rounded-full" />
+            <img src={sharkLogo} alt="FinStream" className="w-10 h-10 rounded-full" />
             <div>
-              <h1 className="text-xl font-bold text-primary-foreground">SharkTrack AI</h1>
-              <p className="text-xs text-primary-foreground/70">Monitoramento Inteligente</p>
+              <h1 className="text-xl font-bold text-primary-foreground">FinStream</h1>
+              <p className="text-xs text-primary-foreground/70">NASA Challenge - Shark Tracking</p>
             </div>
           </div>
 
@@ -35,7 +35,19 @@ const Header = () => {
               onClick={() => scrollToSection('about')}
               className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
-              Sobre Tubarões
+              Sobre o Projeto
+            </button>
+            <button
+              onClick={() => scrollToSection('oceanographic')}
+              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+            >
+              Dados NASA
+            </button>
+            <button
+              onClick={() => scrollToSection('concept')}
+              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+            >
+              Conceito
             </button>
             <button
               onClick={() => scrollToSection('impact')}
@@ -67,7 +79,19 @@ const Header = () => {
               onClick={() => scrollToSection('about')}
               className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
             >
-              Sobre Tubarões
+              Sobre o Projeto
+            </button>
+            <button
+              onClick={() => scrollToSection('oceanographic')}
+              className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
+            >
+              Dados NASA
+            </button>
+            <button
+              onClick={() => scrollToSection('concept')}
+              className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
+            >
+              Conceito
             </button>
             <button
               onClick={() => scrollToSection('impact')}

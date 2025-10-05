@@ -4,23 +4,23 @@ const AboutSection = () => {
   const reasons = [
     {
       icon: Leaf,
-      title: 'Equilíbrio Ecológico',
-      description: 'Tubarões mantêm populações de espécies marinhas sob controle, preservando recifes de coral e ecossistemas costeiros saudáveis.',
+      title: 'Regulação de Presas',
+      description: 'Tubarões controlam populações de espécies marinhas, mantendo o equilíbrio ecológico necessário para ecossistemas saudáveis.',
     },
     {
       icon: Fish,
-      title: 'Topo da Cadeia Alimentar',
-      description: 'Como predadores apex, tubarões regulam a cadeia alimentar marinha, garantindo a biodiversidade oceânica.',
+      title: 'Diversidade de Espécies',
+      description: 'Como predadores apex, tubarões garantem a biodiversidade oceânica através da regulação da cadeia alimentar.',
     },
     {
       icon: Heart,
-      title: 'Saúde dos Oceanos',
+      title: 'Indicadores de Saúde',
       description: 'A presença de tubarões indica oceanos saudáveis. Eles removem animais doentes, mantendo populações fortes.',
     },
     {
       icon: Shield,
-      title: 'Proteção Costeira',
-      description: 'Tubarões protegem recifes e pradarias marinhas que servem como barreiras naturais contra tempestades.',
+      title: 'Proteção de Habitats',
+      description: 'Identificar hotspots de forrageamento ajuda a proteger áreas críticas de alimentação e reprodução.',
     },
   ];
 
@@ -29,11 +29,11 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Por Que os Tubarões São Essenciais?
+            Por Que Prever Localização de Tubarões Importa?
           </h2>
           <p className="text-lg text-muted-foreground">
-            Tubarões existem há mais de 400 milhões de anos e são fundamentais para a saúde dos oceanos. 
-            Sua conservação é crucial para o equilíbrio do ecossistema marinho global.
+            Tubarões são predadores apex essenciais que regulam populações de presas e mantêm a diversidade de espécies 
+            necessária para ecossistemas saudáveis. Identificar onde se alimentam é crucial para proteger habitats importantes.
           </p>
         </div>
 
@@ -57,38 +57,38 @@ const AboutSection = () => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-3xl font-bold mb-4 text-foreground">
-                A Importância da Previsão
+                Dados de Satélites da NASA
               </h3>
               <p className="text-muted-foreground mb-4">
-                Prever a localização e comportamento de tubarões é crucial para:
+                Utilizamos dados das missões SWOT e PACE para identificar hotspots de forrageamento:
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">Reduzir conflitos entre humanos e tubarões</span>
+                  <span className="text-muted-foreground">SWOT: Detecta redemoinhos oceânicos onde tubarões se alimentam</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">Proteger áreas de reprodução e alimentação</span>
+                  <span className="text-muted-foreground">PACE: Monitora fitoplâncton e comunidades marinhas</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">Orientar políticas de conservação baseadas em dados</span>
+                  <span className="text-muted-foreground">Modelo matemático quantifica ligações ecológicas</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">Entender mudanças climáticas e seus impactos</span>
+                  <span className="text-muted-foreground">Previsão de habitats críticos para conservação</span>
                 </li>
               </ul>
             </div>
             <div className="relative">
               <div className="bg-card rounded-xl p-6 shadow-xl border border-border">
-                <div className="text-5xl font-bold text-accent mb-2">400M+</div>
-                <div className="text-muted-foreground">Anos de evolução</div>
+                <div className="text-5xl font-bold text-accent mb-2">SWOT</div>
+                <div className="text-muted-foreground">Surface Water Ocean Topography</div>
               </div>
               <div className="bg-card rounded-xl p-6 shadow-xl border border-border mt-4">
-                <div className="text-5xl font-bold text-accent mb-2">500+</div>
-                <div className="text-muted-foreground">Espécies de tubarões</div>
+                <div className="text-5xl font-bold text-accent mb-2">PACE</div>
+                <div className="text-muted-foreground">Plankton Aerosol Cloud Ecosystem</div>
               </div>
             </div>
           </div>

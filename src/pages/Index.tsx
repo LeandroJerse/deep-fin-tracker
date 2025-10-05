@@ -4,6 +4,8 @@ import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ImpactSection from '@/components/ImpactSection';
+import ConceptSection from '@/components/ConceptSection';
+import OceanographicData from '@/components/OceanographicData';
 import Footer from '@/components/Footer';
 import SharkMap from '@/components/SharkMap';
 import StatsCard from '@/components/StatsCard';
@@ -55,10 +57,10 @@ const Index = () => {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                Dashboard em Tempo Real
+                Análise de Hotspots de Forrageamento
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Monitoramento ao vivo de tubarões com telemetria via satélite e previsões por IA
+                Modelo matemático baseado em dados de satélites SWOT e PACE para identificar áreas de alimentação de tubarões
               </p>
               <div className="flex justify-center gap-4 flex-wrap">
                 <Button
@@ -67,7 +69,7 @@ const Index = () => {
                   className="flex items-center gap-2"
                 >
                   <Activity className={`w-4 h-4 ${isLive ? 'animate-pulse' : ''}`} />
-                  {isLive ? 'Modo Ao Vivo (Ativo)' : 'Ativar Modo Ao Vivo'}
+                  {isLive ? 'Simulação Ativa' : 'Iniciar Simulação'}
                 </Button>
                 <div className="flex gap-2">
                   <Button
@@ -107,7 +109,7 @@ const Index = () => {
               <StatsCard
                 title="Tubarões Monitorados"
                 value={sharks.length}
-                subtitle={isLive ? 'Atualizando...' : 'Dados simulados'}
+                subtitle={isLive ? 'Simulando...' : 'Dados do modelo'}
                 icon={Waves}
                 trend={isLive ? 'neutral' : undefined}
               />
@@ -135,7 +137,7 @@ const Index = () => {
             {/* Map */}
             <div className="mb-8">
               <div className="bg-card rounded-lg p-6 shadow-md border border-border">
-                <h3 className="text-xl font-semibold mb-4 text-foreground">Localização dos Tubarões</h3>
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Mapa de Hotspots de Forrageamento</h3>
                 <div className="h-[500px] rounded-lg overflow-hidden">
                   <SharkMap sharks={sharks} selectedBehavior={selectedBehavior} />
                 </div>
@@ -166,6 +168,8 @@ const Index = () => {
       </section>
 
       <AboutSection />
+      <OceanographicData />
+      <ConceptSection />
       <ImpactSection />
       <Footer />
     </div>
