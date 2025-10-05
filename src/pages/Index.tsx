@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Activity, Waves, Thermometer, TrendingUp } from 'lucide-react';
+import { Activity, Waves, Thermometer, TrendingUp, MapPin, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
@@ -14,8 +15,10 @@ import ForagingChart from '@/components/ForagingChart';
 import { generateMockSharkData } from '@/utils/mockData';
 import { SharkData } from '@/types/shark';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [sharks, setSharks] = useState<SharkData[]>([]);
   const [selectedBehavior, setSelectedBehavior] = useState<number | undefined>(undefined);
   const [isLive, setIsLive] = useState(false);
@@ -50,6 +53,37 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <HeroSection />
+
+      {/* Call to Action - Real Tracking */}
+      <section className="py-12 bg-gradient-to-r from-blue-600 to-cyan-600">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-4xl mx-auto p-8 bg-white/95 backdrop-blur-sm shadow-2xl">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex-1 text-center md:text-left">
+                <div className="flex items-center gap-3 justify-center md:justify-start mb-3">
+                  <div className="p-2 bg-blue-100 rounded-lg">
+                    <MapPin className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                    Rastreamento em Tempo Real
+                  </h2>
+                </div>
+                <p className="text-slate-600 text-base md:text-lg">
+                  Visualize no mapa as posições reais dos tubarões monitorados, com dados de temperatura, comportamento e muito mais!
+                </p>
+              </div>
+              <Button
+                onClick={() => navigate('/rastreamento')}
+                size="lg"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all"
+              >
+                <MapPin className="mr-2 h-5 w-5" />
+                Ver Mapa Interativo
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </section>
 
       {/* Dashboard Section */}
       <section id="dashboard" className="py-20 bg-background">
@@ -172,6 +206,15 @@ const Index = () => {
       <ConceptSection />
       <ImpactSection />
       <Footer />
+
+      {/* Botão Flutuante de Teste de API */}
+      <Button
+        onClick={() => navigate('/api-test')}
+        className="fixed bottom-6 right-6 rounded-full shadow-2xl h-14 w-14 p-0 bg-slate-800 hover:bg-slate-700 z-50"
+        title="Testar API"
+      >
+        <Settings className="h-6 w-6" />
+      </Button>
     </div>
   );
 };
