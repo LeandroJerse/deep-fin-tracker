@@ -63,17 +63,6 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
   useEffect(() => {
     if (!mapRef.current) return
 
-    console.log('🗺️ LeafletMap - Atualizando marcadores')
-    console.log('📊 Total de tubarões recebidos:', sharks.length)
-    console.log('🦈 Dados dos tubarões:', sharks)
-    
-    if (sharks.length > 0) {
-      console.log('📍 Primeiro tubarão completo:', sharks[0])
-      console.log('🔑 Chaves do objeto:', Object.keys(sharks[0]))
-      console.log('📐 Lat do primeiro:', sharks[0].Lat)
-      console.log('📐 Lon do primeiro:', sharks[0].Lon)
-    }
-
     // Remover marcadores anteriores
     markersRef.current.forEach(marker => marker.remove())
     markersRef.current = []
@@ -83,66 +72,107 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
       ? sharks.filter(shark => shark.Comportamento === selectedBehavior)
       : sharks
 
-    console.log('🔍 Tubarões após filtro:', filteredSharks.length)
-
     if (filteredSharks.length === 0) return
 
     // Criar bounds para ajustar o zoom
     const bounds = L.latLngBounds([])
 
     // Adicionar marcadores
-    filteredSharks.forEach((shark, index) => {
-      console.log(`\n🦈 Processando tubarão ${index + 1}:`)
-      console.log('  - Objeto completo:', shark)
-      console.log('  - Id:', shark.Id)
-      console.log('  - Lat:', shark.Lat, '(tipo:', typeof shark.Lat, ')')
-      console.log('  - Lon:', shark.Lon, '(tipo:', typeof shark.Lon, ')')
-      console.log('  - Comportamento:', shark.Comportamento)
-      
+    filteredSharks.forEach((shark) => {
       // Validar coordenadas antes de criar marcador
       if (!shark.Lat || !shark.Lon || isNaN(shark.Lat) || isNaN(shark.Lon)) {
-        console.warn(`❌ Tubarão #${shark.Id} tem coordenadas inválidas:`, shark.Lat, shark.Lon)
-        console.warn('   Todas as propriedades:', Object.entries(shark))
         return
       }
-      
-      console.log('✅ Coordenadas válidas! Criando marcador...')
 
       const color = getBehaviorColor(shark.Comportamento)
       
-      // Criar ícone customizado com formato de tubarão
+      // Criar ícone customizado com tubarão mais bonito e detalhado
       const icon = L.divIcon({
         className: 'custom-shark-marker',
         html: `
-          <div style="
-            width: 45px;
-            height: 45px;
-            background-color: ${color};
-            border: 3px solid white;
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease;
-            cursor: pointer;
+          <div class="shark-icon-wrapper" style="
+            width: 50px;
+            height: 50px;
+            position: relative;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
           ">
-            <svg 
-              width="28" 
-              height="28" 
-              viewBox="0 0 512 512" 
-              fill="white"
-              style="transform: rotate(45deg);"
-            >
-              <!-- Ícone de tubarão SVG -->
-              <path d="M120.6 153.3L96 128l24.6-25.3c6.2-6.4 16.4-6.4 22.6 0l25.3 26 25.3-26c6.2-6.4 16.4-6.4 22.6 0L241 128l-24.6 25.3c-6.2 6.4-16.4 6.4-22.6 0l-25.3-26-25.3 26c-6.2 6.4-16.4 6.4-22.6 0zM313.4 102.7c6.2-6.4 16.4-6.4 22.6 0l25.3 26 25.3-26c6.2-6.4 16.4-6.4 22.6 0L434 128l-24.6 25.3c-6.2 6.4-16.4 6.4-22.6 0l-25.3-26-25.3 26c-6.2 6.4-16.4 6.4-22.6 0L289 128l24.4-25.3zM256 224c-17.7 0-32 14.3-32 32c0 13.3 10.7 24 24 24h272c13.3 0 24-10.7 24-24c0-17.7-14.3-32-32-32H256zM196.8 371.2C164.7 403.3 148.7 448 148.7 496c0 8.8 7.2 16 16 16s16-7.2 16-16c0-39.1 13-75.7 38.1-104.7c6.3-7.3 5.5-18.3-1.8-24.6s-18.3-5.5-24.6 1.8c.4-.4.8-.8 1.2-1.2z"/>
-            </svg>
+            <!-- Círculo de fundo com gradiente -->
+            <div style="
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(135deg, ${color} 0%, ${color}dd 100%);
+              border-radius: 50%;
+              border: 3px solid white;
+              position: absolute;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.3s ease;
+            ">
+              <!-- SVG do Tubarão detalhado -->
+              <svg 
+                width="32" 
+                height="32" 
+                viewBox="0 0 64 64" 
+                fill="none"
+                style="position: relative; z-index: 2;"
+              >
+                <!-- Corpo do tubarão -->
+                <path 
+                  d="M8 32 Q8 28, 12 26 L40 26 Q45 26, 48 28 L56 32 Q58 34, 56 36 L48 40 Q45 42, 40 42 L12 42 Q8 40, 8 36 Z" 
+                  fill="white"
+                  opacity="0.95"
+                />
+                <!-- Barbatana dorsal -->
+                <path 
+                  d="M28 20 L32 12 L36 20 Q34 24, 32 24 Q30 24, 28 20 Z" 
+                  fill="white"
+                  opacity="0.9"
+                />
+                <!-- Barbatana caudal -->
+                <path 
+                  d="M4 28 L8 32 L4 36 Q2 34, 4 28 Z" 
+                  fill="white"
+                  opacity="0.85"
+                />
+                <!-- Barbatanas laterais -->
+                <path 
+                  d="M38 26 L44 22 L42 28 Z" 
+                  fill="white"
+                  opacity="0.8"
+                />
+                <path 
+                  d="M38 42 L44 46 L42 40 Z" 
+                  fill="white"
+                  opacity="0.8"
+                />
+                <!-- Olho -->
+                <circle cx="44" cy="30" r="1.5" fill="${color}" opacity="0.8"/>
+                <!-- Guelras -->
+                <line x1="36" y1="28" x2="34" y2="28" stroke="white" stroke-width="0.8" opacity="0.6"/>
+                <line x1="36" y1="32" x2="34" y2="32" stroke="white" stroke-width="0.8" opacity="0.6"/>
+                <line x1="36" y1="36" x2="34" y2="36" stroke="white" stroke-width="0.8" opacity="0.6"/>
+              </svg>
+            </div>
+            
+            <!-- Indicador de pulso (opcional) -->
+            <div class="pulse-ring" style="
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              border: 2px solid ${color};
+              opacity: 0;
+              animation: pulse 2s ease-out infinite;
+            "></div>
           </div>
         `,
-        iconSize: [45, 45],
-        iconAnchor: [22, 22],
-        popupAnchor: [0, -25]
+        iconSize: [50, 50],
+        iconAnchor: [25, 25],
+        popupAnchor: [0, -28]
       })
 
       // Criar popup com verificações de segurança
@@ -181,18 +211,18 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
             </div>
             
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">P. Forrageio:</span>
+              <span style="color: #64748B; font-weight: 500;">Probabilidade de Forrageio:</span>
               <span style="color: #0F172A; font-weight: 600;">${safeValue(shark.PForrageio ? shark.PForrageio * 100 : null, 0)}%</span>
             </div>
             
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">Clorofila-a:</span>
+              <span style="color: #64748B; font-weight: 500;">Clorofila Ambiente:</span>
               <span style="color: #0F172A;">${safeValue(shark.ChlorAAmbiente, 2)}</span>
             </div>
             
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">SSHA:</span>
-              <span style="color: #0F172A;">${safeValue(shark.SshaAmbiente, 2)}</span>
+              <span style="color: #64748B; font-weight: 500;">Anomalida do Nível do Mar:</span>
+              <span style="color: #0F172A;">${safeValue(shark.SshaAmbiente, 2) } cm</span>
             </div>
             
             <div style="padding-top: 8px; border-top: 2px solid #E2E8F0;">
@@ -230,10 +260,9 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
       })
       setHasValidSharks(true)
     } else if (filteredSharks.length > 0 && markersRef.current.length === 0) {
-      console.warn('Nenhum tubarão possui coordenadas válidas para exibir no mapa')
       setHasValidSharks(false)
     } else if (filteredSharks.length === 0) {
-      setHasValidSharks(true) // Reset quando não há filtros
+      setHasValidSharks(true)
     }
   }, [sharks, selectedBehavior, onSharkSelect])
 
@@ -244,19 +273,62 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
           background: transparent !important;
           border: none !important;
         }
-        .custom-shark-marker > div {
-          animation: float 3s ease-in-out infinite;
+        
+        /* Animação de flutuação suave */
+        .shark-icon-wrapper {
+          animation: sharkFloat 3s ease-in-out infinite;
+          cursor: pointer;
         }
-        .custom-shark-marker > div:hover {
-          transform: rotate(-45deg) scale(1.3) !important;
-          animation: none;
-        }
-        @keyframes float {
+        
+        @keyframes sharkFloat {
           0%, 100% {
-            transform: rotate(-45deg) translateY(0px);
+            transform: translateY(0px) rotate(0deg);
+          }
+          25% {
+            transform: translateY(-3px) rotate(-2deg);
+          }
+          75% {
+            transform: translateY(-3px) rotate(2deg);
+          }
+        }
+        
+        /* Efeito de hover mais suave */
+        .custom-shark-marker:hover .shark-icon-wrapper {
+          animation: none;
+          transform: scale(1.15) !important;
+        }
+        
+        .custom-shark-marker:hover .shark-icon-wrapper > div:first-child {
+          box-shadow: 0 0 20px currentColor;
+          transform: scale(1.05);
+        }
+        
+        /* Animação de pulso */
+        @keyframes pulse {
+          0% {
+            transform: translate(-50%, -50%) scale(0.8);
+            opacity: 0.8;
+          }
+          100% {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0;
+          }
+        }
+        
+        /* Efeito de onda ao clicar */
+        .custom-shark-marker:active .shark-icon-wrapper {
+          animation: ripple 0.6s ease-out;
+        }
+        
+        @keyframes ripple {
+          0% {
+            transform: scale(1);
           }
           50% {
-            transform: rotate(-45deg) translateY(-5px);
+            transform: scale(0.95);
+          }
+          100% {
+            transform: scale(1);
           }
         }
         .shark-popup .leaflet-popup-content-wrapper {

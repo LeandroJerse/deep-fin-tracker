@@ -61,18 +61,18 @@ export class RastreamentoTubaroesService {
       const apiResponse = await api.get<ApiResponse<RastreamentoTubaroes>>(url)
       
       // Mapear os campos da API (minúsculos) para o formato TypeScript (PascalCase)
-      const item = apiResponse.data[0]
+      const item = apiResponse.data[0] as any
       return {
-        Id: item.id,
-        Tempo: item.tempo,
-        Lat: item.lat,
-        Lon: item.lon,
-        TempCc: item.tempCc,
-        PForrageio: item.pForrageio,
-        Comportamento: item.comportamento,
-        ChlorAAmbiente: item.chlorAAmbiente,
-        SshaAmbiente: item.sshaAmbiente,
-      } as any
+        Id: item['id'],
+        Tempo: item['tempo'],
+        Lat: item['lat'],
+        Lon: item['lon'],
+        TempCc: item['tempCc'],
+        PForrageio: item['pForrageio'],
+        Comportamento: item['comportamento'],
+        ChlorAAmbiente: item['chlorAAmbiente'],
+        SshaAmbiente: item['sshaAmbiente'],
+      } as RastreamentoTubaroes
     } catch (error) {
       console.error('Erro ao buscar rastreamento de tubarões:', error)
       throw new Error('Falha ao buscar rastreamento de tubarões')
@@ -82,24 +82,7 @@ export class RastreamentoTubaroesService {
   static async getLatestposition(): Promise<PaginatedResponse<RastreamentoTubaroes>> {
     try {
       const url = buildUrl(API_ENDPOINTS.RASTEAMENTO_TUBAROES.LATEST_POSITION)
-      console.log('🔍 [SERVICE] Buscando dados da API:', url)
-      
       const apiResponse = await api.get<ApiResponse<RastreamentoTubaroes>>(url)
-      
-      console.log('📊 [SERVICE] Resposta completa da API:', apiResponse)
-      console.log('📦 [SERVICE] apiResponse.data:', apiResponse.data)
-      console.log('📈 [SERVICE] Quantidade de registros:', apiResponse.data?.length)
-      console.log('🔢 [SERVICE] Pagination:', apiResponse.pagination)
-      
-      if (apiResponse.data && apiResponse.data.length > 0) {
-        console.log('🦈 [SERVICE] Primeiro tubarão retornado:', apiResponse.data[0])
-        console.log('🔑 [SERVICE] Chaves do primeiro tubarão:', Object.keys(apiResponse.data[0]))
-        
-        const firstShark = apiResponse.data[0]
-        console.log('📍 [SERVICE] Coordenadas do primeiro:')
-        console.log('   - Lat:', firstShark.Lat, typeof firstShark.Lat)
-        console.log('   - Lon:', firstShark.Lon, typeof firstShark.Lon)
-      }
       
       // Mapear os campos da API (minúsculos) para o formato TypeScript (PascalCase)
       const mappedItems = apiResponse.data.map((item: any) => ({
@@ -114,23 +97,15 @@ export class RastreamentoTubaroesService {
         SshaAmbiente: item.sshaAmbiente,
       }))
       
-      console.log('🔄 [SERVICE] Dados mapeados:', mappedItems)
-      if (mappedItems.length > 0) {
-        console.log('✨ [SERVICE] Primeiro tubarão após mapeamento:', mappedItems[0])
-      }
-      
-      const result = {
+      return {
         items: mappedItems,
         totalRecords: apiResponse.pagination?.totalRecords || mappedItems.length,
         pageNum: apiResponse.pagination?.pageNum || 1,
         itemsPerPage: apiResponse.pagination?.itemsPerPage || mappedItems.length,
         totalPages: apiResponse.pagination?.totalPages || Math.ceil(mappedItems.length / (apiResponse.pagination?.itemsPerPage || mappedItems.length)),
       }
-      
-      console.log('✅ [SERVICE] Retornando resultado:', result)
-      return result
     } catch (error) {
-      console.error('❌ [SERVICE] Erro ao buscar rastreamento de tubarões:', error)
+      console.error('Erro ao buscar rastreamento de tubarões:', error)
       throw new Error('Falha ao buscar rastreamento de tubarões')
     }
   }

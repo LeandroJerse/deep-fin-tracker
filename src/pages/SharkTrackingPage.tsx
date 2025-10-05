@@ -1,63 +1,67 @@
 import SharkMapContainer from '@/components/map/SharkMapContainer'
 import { RastreamentoTubaroes } from '@/types/rastreamentoTubaroes'
 import { Card } from '@/components/ui/card'
-import { Waves } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Waves, ArrowLeft } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 const SharkTrackingPage = () => {
+  const navigate = useNavigate()
+  
   const handleSharkSelect = (shark: RastreamentoTubaroes) => {
     console.log('Tubarão selecionado:', shark)
     // Aqui você pode adicionar lógica adicional quando um tubarão for selecionado
     // Por exemplo, mostrar detalhes em um painel lateral, fazer zoom, etc.
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-slate-50 to-cyan-50 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Cabeçalho */}
-        <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-lg">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Waves className="h-6 w-6 text-blue-600" />
-            </div>
-            <div>
-              <h1 className="text-3xl font-bold text-slate-900">
-                Rastreamento de Tubarões
-              </h1>
-              <p className="text-sm text-slate-600 mt-1">
-                Visualização em tempo real das posições e comportamentos dos tubarões monitorados
-              </p>
-            </div>
-          </div>
-        </Card>
+  const handleGoBack = () => {
+    navigate('/')
+  }
 
-        {/* Mapa */}
-        <div className="h-[calc(100vh-200px)] min-h-[600px]">
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-slate-900 to-cyan-900 p-4">
+      <div className="max-w-[98vw] mx-auto">
+        {/* Cabeçalho Compacto */}
+        <div className="mb-4">
+          <Card className="p-4 bg-white/90 backdrop-blur-md shadow-2xl border border-slate-200/50">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                {/* Botão de Voltar Estratégico */}
+                <Button
+                  onClick={handleGoBack}
+                  variant="outline"
+                  size="icon"
+                  className="h-10 w-10 rounded-xl border-2 border-slate-300 bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-cyan-50 hover:border-blue-400 transition-all duration-300 shadow-md hover:shadow-lg group"
+                  aria-label="Voltar para página inicial"
+                >
+                  <ArrowLeft className="h-5 w-5 text-slate-600 group-hover:text-blue-600 transition-colors" />
+                </Button>
+                
+                <div className="p-2 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl shadow-lg">
+                  <Waves className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                    Rastreamento de Tubarões
+                  </h1>
+                  <p className="text-xs text-slate-500">
+                    Monitoramento em tempo real
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Mapa em Tela Cheia */}
+        <div className="h-[calc(100vh-120px)]">
           <SharkMapContainer
             autoRefresh={false}
             refreshInterval={30000}
             onSharkSelect={handleSharkSelect}
-            className="rounded-lg overflow-hidden shadow-xl"
+            className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/30"
           />
         </div>
-
-        {/* Legenda */}
-        <Card className="p-4 bg-white/80 backdrop-blur-sm shadow-lg">
-          <h3 className="text-sm font-semibold text-slate-900 mb-3">Legenda de Comportamentos</h3>
-          <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-2">
-              <span className="h-4 w-4 rounded-full bg-blue-500 border-2 border-white shadow"></span>
-              <span className="text-sm text-slate-700">Transitando</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="h-4 w-4 rounded-full bg-orange-500 border-2 border-white shadow"></span>
-              <span className="text-sm text-slate-700">Busca</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="h-4 w-4 rounded-full bg-green-500 border-2 border-white shadow"></span>
-              <span className="text-sm text-slate-700">Forrageando</span>
-            </div>
-          </div>
-        </Card>
       </div>
     </div>
   )

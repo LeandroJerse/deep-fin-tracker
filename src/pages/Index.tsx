@@ -54,37 +54,6 @@ const Index = () => {
       <Header />
       <HeroSection />
 
-      {/* Call to Action - Real Tracking */}
-      <section className="py-12 bg-gradient-to-r from-blue-600 to-cyan-600">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-4xl mx-auto p-8 bg-white/95 backdrop-blur-sm shadow-2xl">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex-1 text-center md:text-left">
-                <div className="flex items-center gap-3 justify-center md:justify-start mb-3">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <MapPin className="h-6 w-6 text-blue-600" />
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                    Rastreamento em Tempo Real
-                  </h2>
-                </div>
-                <p className="text-slate-600 text-base md:text-lg">
-                  Visualize no mapa as posições reais dos tubarões monitorados, com dados de temperatura, comportamento e muito mais!
-                </p>
-              </div>
-              <Button
-                onClick={() => navigate('/rastreamento')}
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all"
-              >
-                <MapPin className="mr-2 h-5 w-5" />
-                Ver Mapa Interativo
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </section>
-
       {/* Dashboard Section */}
       <section id="dashboard" className="py-20 bg-background">
         <div className="container mx-auto px-4">
@@ -96,6 +65,70 @@ const Index = () => {
               <p className="text-lg text-muted-foreground mb-6">
                 Modelo matemático baseado em dados de satélites SWOT e PACE para identificar áreas de alimentação de tubarões
               </p>
+              
+              {/* Card de Acesso ao Mapa Real */}
+              <div className="mb-8 max-w-4xl mx-auto">
+                <Card className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-cyan-600 to-blue-700 border-none shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 hover:scale-[1.02]">
+                  {/* Padrão decorativo de fundo */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-0 left-0 w-72 h-72 bg-white rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+                    <div className="absolute bottom-0 right-0 w-72 h-72 bg-white rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+                  </div>
+                  
+                  <div className="relative p-8 md:p-10">
+                    <div className="flex flex-col md:flex-row items-center gap-6">
+                      {/* Ícone destacado */}
+                      <div className="flex-shrink-0">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-white rounded-2xl blur-xl opacity-50 animate-pulse"></div>
+                          <div className="relative bg-white/20 backdrop-blur-sm rounded-2xl p-5 border-2 border-white/30">
+                            <MapPin className="h-12 w-12 text-white" />
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Conteúdo */}
+                      <div className="flex-1 text-center md:text-left">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                          Rastreamento em Tempo Real
+                        </h3>
+                        <p className="text-blue-100 text-sm md:text-base leading-relaxed">
+                          Explore o mapa interativo com dados reais da API, visualize posições dos tubarões e informações oceanográficas em tempo real
+                        </p>
+                      </div>
+                      
+                      {/* Botão */}
+                      <div className="flex-shrink-0">
+                        <Button
+                          onClick={() => navigate('/rastreamento')}
+                          size="lg"
+                          className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+                        >
+                          Ver Mapa
+                          <Waves className="ml-2 h-5 w-5 group-hover:animate-pulse" />
+                        </Button>
+                      </div>
+                    </div>
+                    
+                    {/* Badges de recursos */}
+                    <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
+                      <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/30">
+                        <Activity className="h-3 w-3" />
+                        Dados Reais
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/30">
+                        <Thermometer className="h-3 w-3" />
+                        Temperatura
+                      </span>
+                      <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/30">
+                        <TrendingUp className="h-3 w-3" />
+                        Comportamento
+                      </span>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
               <div className="flex justify-center gap-4 flex-wrap">
                 <Button
                   onClick={() => setIsLive(!isLive)}
@@ -166,30 +199,6 @@ const Index = () => {
                 subtitle="Água superficial"
                 icon={Thermometer}
               />
-            </div>
-
-            {/* Map */}
-            <div className="mb-8">
-              <div className="bg-card rounded-lg p-6 shadow-md border border-border">
-                <h3 className="text-xl font-semibold mb-4 text-foreground">Mapa de Hotspots de Forrageamento</h3>
-                <div className="h-[500px] rounded-lg overflow-hidden">
-                  <SharkMap sharks={sharks} selectedBehavior={selectedBehavior} />
-                </div>
-                <div className="mt-4 flex flex-wrap gap-4 justify-center">
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded-full bg-blue-500 border-2 border-white"></div>
-                    <span className="text-sm text-muted-foreground">Transitando</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded-full bg-orange-500 border-2 border-white"></div>
-                    <span className="text-sm text-muted-foreground">Busca</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 rounded-full bg-green-500 border-2 border-white"></div>
-                    <span className="text-sm text-muted-foreground">Forrageando</span>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Charts */}

@@ -22,7 +22,7 @@ const SharkTrackingMap = ({ sharks, onSharkSelect }: SharkTrackingMapProps) => {
   }
 
   return (
-    <div className="relative w-full h-full rounded-lg overflow-hidden shadow-2xl">
+    <div className="relative w-full h-full rounded-2xl overflow-hidden">
       <LeafletMap 
         sharks={filteredSharks}
         onSharkSelect={onSharkSelect}

@@ -16,7 +16,7 @@ interface SharkMapContainerProps {
 
 const SharkMapContainer = ({ 
   autoRefresh = false, 
-  refreshInterval = 30000, // 30 segundos por padrão
+  refreshInterval = 30000,
   onSharkSelect,
   className = ''
 }: SharkMapContainerProps) => {
@@ -125,24 +125,25 @@ const SharkMapContainer = ({
         onSharkSelect={onSharkSelect}
       />
       
-      {/* Botão de atualização flutuante */}
-      <div className="absolute top-4 right-4 z-10">
+      {/* Botão de atualização - Inferior Direito */}
+      <div className="absolute bottom-6 right-6 z-[1000]">
         <Button
           onClick={handleRefresh}
           disabled={isRefreshing}
-          variant="secondary"
           size="sm"
-          className="bg-white/95 backdrop-blur-sm shadow-lg hover:bg-white"
+          className="bg-white/95 backdrop-blur-md shadow-2xl hover:bg-white hover:scale-105 transition-all duration-300 rounded-xl border border-slate-200/50"
         >
-          <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
-          {isRefreshing ? 'Atualizando...' : 'Atualizar'}
+          <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''} text-blue-600`} />
+          <span className="text-slate-700 font-medium">
+            {isRefreshing ? 'Atualizando...' : 'Atualizar'}
+          </span>
         </Button>
       </div>
 
-      {/* Indicador de erro flutuante (se houver dados mas erro na atualização) */}
+      {/* Indicador de erro flutuante */}
       {error && sharks.length > 0 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10 max-w-md">
-          <Alert variant="destructive" className="bg-white/95 backdrop-blur-sm shadow-lg">
+        <div className="absolute top-20 left-1/2 transform -translate-x-1/2 z-[1000] max-w-md">
+          <Alert variant="destructive" className="bg-white/95 backdrop-blur-md shadow-2xl border-red-200">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription className="text-xs">
               Erro ao atualizar: {error}
@@ -150,19 +151,8 @@ const SharkMapContainer = ({
           </Alert>
         </div>
       )}
-
-      {/* Informação sobre total de registros */}
-      <div className="absolute bottom-4 right-4 z-10">
-        <Card className="px-3 py-2 bg-white/95 backdrop-blur-sm shadow-lg">
-          <p className="text-xs text-slate-600">
-            <span className="font-semibold">{totalRecords}</span> tubar
-{totalRecords === 1 ? 'ão' : 'ões'} rastreado{totalRecords === 1 ? '' : 's'}
-          </p>
-        </Card>
-      </div>
     </div>
   )
 }
 
 export default SharkMapContainer
-
