@@ -50,8 +50,8 @@ export class RastreamentoTubaroesService {
         totalPages: apiResponse.pagination.totalPages || Math.ceil(mappedItems.length / apiResponse.pagination.itemsPerPage),
       }
     } catch (error) {
-      console.error('Erro ao buscar rastreamento de tubarões:', error)
-      throw new Error('Falha ao carregar rastreamento de tubarões')
+      console.error('Error loading shark tracking data:', error)
+      throw new Error('Error loading shark tracking data')
     }
   }
 
@@ -74,8 +74,8 @@ export class RastreamentoTubaroesService {
         SshaAmbiente: item['sshaAmbiente'],
       } as RastreamentoTubaroes
     } catch (error) {
-      console.error('Erro ao buscar rastreamento de tubarões:', error)
-      throw new Error('Falha ao buscar rastreamento de tubarões')
+      console.error('Error loading shark tracking data:', error)
+      throw new Error('Error loading shark tracking data')
     }
   }
 
@@ -105,8 +105,8 @@ export class RastreamentoTubaroesService {
         totalPages: apiResponse.pagination?.totalPages || Math.ceil(mappedItems.length / (apiResponse.pagination?.itemsPerPage || mappedItems.length)),
       }
     } catch (error) {
-      console.error('Erro ao buscar rastreamento de tubarões:', error)
-      throw new Error('Falha ao buscar rastreamento de tubarões')
+      console.error('Error loading shark tracking data:', error)
+      throw new Error('Error loading shark tracking data')
     }
   }
 }

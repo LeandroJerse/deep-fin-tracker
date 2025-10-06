@@ -4,31 +4,31 @@ const ImpactSection = () => {
   const impacts = [
     {
       icon: Users,
-      title: 'Conservação Marinha',
-      description: 'Identificar hotspots de forrageamento permite proteger áreas críticas de alimentação, garantindo a sobrevivência de espécies de tubarões.',
+      title: 'Marine Conservation',
+      description: 'Identifying foraging hotspots allows protecting critical feeding areas, ensuring shark species survival.',
       stat: '90%',
-      statLabel: 'Áreas protegidas',
+      statLabel: 'Protected areas',
     },
     {
       icon: Anchor,
-      title: 'Gestão Pesqueira',
-      description: 'Pescadores podem evitar áreas de alimentação de tubarões, reduzindo capturas acidentais e protegendo espécies ameaçadas.',
+      title: 'Fisheries Management',
+      description: 'Fishermen can avoid shark feeding areas, reducing bycatch and protecting threatened species.',
       stat: '70%',
-      statLabel: 'Menos pesca acidental',
+      statLabel: 'Less bycatch',
     },
     {
       icon: AlertTriangle,
-      title: 'Políticas Públicas',
-      description: 'Dados científicos orientam políticas de conservação, criação de reservas marinhas e regulamentações de pesca sustentável.',
+      title: 'Public Policies',
+      description: 'Scientific data guides conservation policies, marine reserve creation and sustainable fishing regulations.',
       stat: '100%',
-      statLabel: 'Decisões baseadas em dados',
+      statLabel: 'Data-driven decisions',
     },
     {
       icon: TrendingUp,
-      title: 'Educação Ambiental',
-      description: 'Compreender o comportamento de tubarões educa estudantes e comunidades sobre a importância dos predadores apex nos oceanos.',
+      title: 'Environmental Education',
+      description: 'Understanding shark behavior educates students and communities about the importance of apex predators in oceans.',
       stat: '5x',
-      statLabel: 'Mais conscientização',
+      statLabel: 'More awareness',
     },
   ];
 
@@ -37,11 +37,11 @@ const ImpactSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Como Previsões de Localização Afetam Decisões Humanas
+            How Location Predictions Affect Human Decisions
           </h2>
           <p className="text-lg text-muted-foreground">
-            Identificar hotspots de forrageamento de tubarões permite decisões informadas sobre conservação marinha, 
-            segurança costeira e gestão de ecossistemas oceânicos.
+            Identifying shark foraging hotspots enables informed decisions about marine conservation, 
+            coastal safety and ocean ecosystem management.
           </p>
         </div>
 
@@ -70,23 +70,23 @@ const ImpactSection = () => {
 
         <div className="bg-gradient-to-br from-accent/10 to-secondary/10 rounded-2xl p-8 md:p-12 border border-accent/20">
           <h3 className="text-3xl font-bold text-center mb-8 text-foreground">
-            Aplicações do Modelo FinStream
+            FinStream Model Applications
           </h3>
           <div className="grid md:grid-cols-3 gap-6 text-center">
             <div>
               <div className="text-4xl mb-3">🛰️</div>
-              <h4 className="font-semibold mb-2 text-foreground">Dados de Satélite</h4>
-              <p className="text-sm text-muted-foreground">SWOT e PACE fornecem dados oceanográficos</p>
+              <h4 className="font-semibold mb-2 text-foreground">Satellite Data</h4>
+              <p className="text-sm text-muted-foreground">SWOT and PACE provide oceanographic data</p>
             </div>
             <div>
               <div className="text-4xl mb-3">🧮</div>
-              <h4 className="font-semibold mb-2 text-foreground">Modelo Matemático</h4>
-              <p className="text-sm text-muted-foreground">Quantifica ligações ecológicas</p>
+              <h4 className="font-semibold mb-2 text-foreground">Mathematical Model</h4>
+              <p className="text-sm text-muted-foreground">Quantifies ecological connections</p>
             </div>
             <div>
               <div className="text-4xl mb-3">🎯</div>
               <h4 className="font-semibold mb-2 text-foreground">Hotspots</h4>
-              <p className="text-sm text-muted-foreground">Identifica áreas de forrageamento</p>
+              <p className="text-sm text-muted-foreground">Identifies foraging areas</p>
             </div>
           </div>
         </div>

@@ -34,18 +34,18 @@ class HttpClient {
     if (!response.ok) {
       try {
         const errorData = await response.json()
-        throw new Error(errorData.message || `Erro ${response.status}: ${response.statusText}`)
+        throw new Error(errorData.message || `Error ${response.status}: ${response.statusText}`)
       } catch {
-        throw new Error(`Erro ${response.status}: ${response.statusText}`)
+        throw new Error(`Error ${response.status}: ${response.statusText}`)
       }
     }
 
-    // Para respostas vazias (204 No Content)
+    // For empty responses (204 No Content)
     if (response.status === 204) {
       return null
     }
 
-    // Tenta fazer parse da resposta como JSON
+    // Try to parse the response as JSON
     try {
       return await response.json()
     } catch {
@@ -54,7 +54,7 @@ class HttpClient {
   }
 
   /**
-   * Executa uma requisição HTTP
+   * Executes an HTTP request
    */
   private async request<T = any>(
     url: string,
@@ -84,7 +84,7 @@ class HttpClient {
       return await this.processResponse(response)
     } catch (error) {
       if (error instanceof Error && error.message === 'TOKEN_REFRESHED' && retryOnAuthError) {
-        // Token foi renovado, tenta a requisição novamente
+        // Token was refreshed, try the request again
         const retryHeaders = {
           ...this.defaultHeaders,
           ...requestConfig.headers,
@@ -107,14 +107,14 @@ class HttpClient {
   }
 
   /**
-   * Requisição GET
+   * GET request
    */
   async get<T = any>(url: string, config?: RequestConfig): Promise<T> {
     return this.request<T>(url, { method: 'GET', ...config })
   }
 
   /**
-   * Requisição POST
+   * POST request
    */
   async post<T = any>(url: string, data?: any, config?: RequestConfig): Promise<T> {
     return this.request<T>(url, {
@@ -125,7 +125,7 @@ class HttpClient {
   }
 
   /**
-   * Requisição PUT
+   * PUT request
    */
   async put<T = any>(url: string, data?: any, config?: RequestConfig): Promise<T> {
     return this.request<T>(url, {
@@ -136,7 +136,7 @@ class HttpClient {
   }
 
   /**
-   * Requisição PATCH
+   * PATCH request
    */
   async patch<T = any>(url: string, data?: any, config?: RequestConfig): Promise<T> {
     return this.request<T>(url, {
@@ -147,7 +147,7 @@ class HttpClient {
   }
 
   /**
-   * Upload de arquivo
+   * Upload file
    */
   async upload<T = any>(
     url: string,
@@ -161,7 +161,7 @@ class HttpClient {
       ...(config?.headers as Record<string, string> || {}),
     }
 
-    // Remove Content-Type para que o browser defina automaticamente com boundary
+    // Remove Content-Type so the browser can define it automatically with boundary
     delete headers['Content-Type']
 
     return this.request<T>(url, {
@@ -173,7 +173,7 @@ class HttpClient {
   }
 
   /**
-   * Download de arquivo
+   * Download file
    */
   async download(url: string, filename?: string, config?: RequestConfig): Promise<void> {
     const response = await fetchWithTimeout(
@@ -189,7 +189,7 @@ class HttpClient {
     )
 
     if (!response.ok) {
-      throw new Error(`Erro ${response.status}: ${response.statusText}`)
+      throw new Error(`Error ${response.status}: ${response.statusText}`)
     }
 
     const blob = await response.blob()
@@ -204,10 +204,10 @@ class HttpClient {
   }
 }
 
-// Instância singleton do cliente HTTP
+// Singleton instance of the HTTP client
 export const httpClient = new HttpClient()
 
-// Exporta métodos utilitários
+// Export utility methods
 export const api = {
   get: <T = any>(url: string, config?: RequestConfig) => httpClient.get<T>(url, config),
   post: <T = any>(url: string, data?: any, config?: RequestConfig) => httpClient.post<T>(url, data, config),

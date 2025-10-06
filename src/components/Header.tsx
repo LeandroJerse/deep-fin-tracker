@@ -26,34 +26,22 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection('dashboard')}
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-            >
-              Dashboard
-            </button>
-            <button
               onClick={() => scrollToSection('about')}
               className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
-              Sobre o Projeto
-            </button>
-            <button
-              onClick={() => scrollToSection('oceanographic')}
-              className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
-            >
-              Dados NASA
+              About Project
             </button>
             <button
               onClick={() => scrollToSection('concept')}
               className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
-              Conceito
+              Concept
             </button>
             <button
               onClick={() => scrollToSection('impact')}
               className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
             >
-              Impacto
+              Impact
             </button>
           </nav>
 
@@ -70,7 +58,7 @@ const Header = () => {
         {mobileMenuOpen && (
           <nav className="md:hidden py-4 space-y-3 border-t border-primary-foreground/10">
             <button
-              onClick={() => scrollToSection('dashboard')}
+              onClick={() => scrollToSection('tracking')}
               className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
             >
               Dashboard
@@ -79,25 +67,19 @@ const Header = () => {
               onClick={() => scrollToSection('about')}
               className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
             >
-              Sobre o Projeto
-            </button>
-            <button
-              onClick={() => scrollToSection('oceanographic')}
-              className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
-            >
-              Dados NASA
+              About Project
             </button>
             <button
               onClick={() => scrollToSection('concept')}
               className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
             >
-              Conceito
+              Concept
             </button>
             <button
               onClick={() => scrollToSection('impact')}
               className="block w-full text-left text-primary-foreground/80 hover:text-primary-foreground py-2"
             >
-              Impacto
+              Impact
             </button>
           </nav>
         )}

@@ -18,18 +18,18 @@ const HeroSection = () => {
           </h1>
           
           <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 leading-relaxed">
-            Identificando hotspots de forrageamento de tubarões usando dados de satélites da NASA (SWOT e PACE). 
-            Modelo matemático para prever habitats de alimentação e quantificar ligações ecológicas.
+            Identifying shark foraging hotspots using NASA satellite data (SWOT and PACE). 
+            Mathematical model to predict feeding habitats and quantify ecological connections.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <div className="flex items-center space-x-2 bg-primary-foreground/10 backdrop-blur-sm px-6 py-3 rounded-full">
               <Activity className="w-5 h-5 text-accent" />
-              <span className="text-primary-foreground font-medium">Dados SWOT</span>
+              <span className="text-primary-foreground font-medium">SWOT Data</span>
             </div>
             <div className="flex items-center space-x-2 bg-primary-foreground/10 backdrop-blur-sm px-6 py-3 rounded-full">
               <MapPin className="w-5 h-5 text-accent" />
-              <span className="text-primary-foreground font-medium">Dados PACE</span>
+              <span className="text-primary-foreground font-medium">PACE Data</span>
             </div>
             <div className="flex items-center space-x-2 bg-primary-foreground/10 backdrop-blur-sm px-6 py-3 rounded-full">
               <Waves className="w-5 h-5 text-accent" />
@@ -38,10 +38,10 @@ const HeroSection = () => {
           </div>
 
           <button
-            onClick={() => document.getElementById('dashboard')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('tracking')?.scrollIntoView({ behavior: 'smooth' })}
             className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-lg text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
           >
-            Explorar Hotspots de Forrageamento
+            Explore Foraging Hotspots
           </button>
         </div>
       </div>

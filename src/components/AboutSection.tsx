@@ -4,23 +4,23 @@ const AboutSection = () => {
   const reasons = [
     {
       icon: Leaf,
-      title: 'Regulação de Presas',
-      description: 'Tubarões controlam populações de espécies marinhas, mantendo o equilíbrio ecológico necessário para ecossistemas saudáveis.',
+      title: 'Prey Regulation',
+      description: 'Sharks control marine species populations, maintaining the ecological balance necessary for healthy ecosystems.',
     },
     {
       icon: Fish,
-      title: 'Diversidade de Espécies',
-      description: 'Como predadores apex, tubarões garantem a biodiversidade oceânica através da regulação da cadeia alimentar.',
+      title: 'Species Diversity',
+      description: 'As apex predators, sharks ensure oceanic biodiversity through food chain regulation.',
     },
     {
       icon: Heart,
-      title: 'Indicadores de Saúde',
-      description: 'A presença de tubarões indica oceanos saudáveis. Eles removem animais doentes, mantendo populações fortes.',
+      title: 'Health Indicators',
+      description: 'The presence of sharks indicates healthy oceans. They remove sick animals, maintaining strong populations.',
     },
     {
       icon: Shield,
-      title: 'Proteção de Habitats',
-      description: 'Identificar hotspots de forrageamento ajuda a proteger áreas críticas de alimentação e reprodução.',
+      title: 'Habitat Protection',
+      description: 'Identifying foraging hotspots helps protect critical feeding and breeding areas.',
     },
   ];
 
@@ -29,11 +29,11 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-            Por Que Prever Localização de Tubarões Importa?
+            Why Predicting Shark Location Matters?
           </h2>
           <p className="text-lg text-muted-foreground">
-            Tubarões são predadores apex essenciais que regulam populações de presas e mantêm a diversidade de espécies 
-            necessária para ecossistemas saudáveis. Identificar onde se alimentam é crucial para proteger habitats importantes.
+            Sharks are essential apex predators that regulate prey populations and maintain species diversity 
+            necessary for healthy ecosystems. Identifying where they feed is crucial for protecting important habitats.
           </p>
         </div>
 
@@ -57,27 +57,27 @@ const AboutSection = () => {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h3 className="text-3xl font-bold mb-4 text-foreground">
-                Dados de Satélites da NASA
+                NASA Satellite Data
               </h3>
               <p className="text-muted-foreground mb-4">
-                Utilizamos dados das missões SWOT e PACE para identificar hotspots de forrageamento:
+                We use data from SWOT and PACE missions to identify foraging hotspots:
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">SWOT: Detecta redemoinhos oceânicos onde tubarões se alimentam</span>
+                  <span className="text-muted-foreground">SWOT: Detects oceanic eddies where sharks feed</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">PACE: Monitora fitoplâncton e comunidades marinhas</span>
+                  <span className="text-muted-foreground">PACE: Monitors phytoplankton and marine communities</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">Modelo matemático quantifica ligações ecológicas</span>
+                  <span className="text-muted-foreground">Mathematical model quantifies ecological connections</span>
                 </li>
                 <li className="flex items-start">
                   <span className="bg-accent text-accent-foreground rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-muted-foreground">Previsão de habitats críticos para conservação</span>
+                  <span className="text-muted-foreground">Prediction of critical habitats for conservation</span>
                 </li>
               </ul>
             </div>

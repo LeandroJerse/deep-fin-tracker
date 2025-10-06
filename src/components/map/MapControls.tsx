@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Activity, Waves, Fish } from 'lucide-react'
 import { useState } from 'react'
+import { getBehaviorInfo } from '@/utils/sharkTranslations'
 
 interface MapControlsProps {
   onZoomIn: () => void
@@ -26,7 +27,7 @@ const MapControls = ({
 
   const filters = [
     { 
-      label: 'Transitando', 
+      label: 'Transiting', 
       value: 'transitando', 
       color: '#3B82F6',
       icon: Activity,
@@ -35,7 +36,7 @@ const MapControls = ({
       textClass: 'text-blue-700'
     },
     { 
-      label: 'Busca', 
+      label: 'Searching', 
       value: 'busca', 
       color: '#F59E0B',
       icon: Waves,
@@ -44,7 +45,7 @@ const MapControls = ({
       textClass: 'text-orange-700'
     },
     { 
-      label: 'Forrageando', 
+      label: 'Foraging', 
       value: 'forrageando', 
       color: '#10B981',
       icon: Fish,
@@ -67,7 +68,7 @@ const MapControls = ({
             <div className="h-10 w-px bg-slate-200"></div>
             <div className="flex flex-col items-center">
               <span className="text-2xl font-bold text-blue-600">{filteredCount}</span>
-              <span className="text-xs text-slate-500 font-medium">Visíveis</span>
+              <span className="text-xs text-slate-500 font-medium">Visible</span>
             </div>
           </div>
         </div>

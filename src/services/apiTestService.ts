@@ -40,7 +40,7 @@ export class ApiTestService {
         endpoint: buildUrl(endpoint),
         responseTime: Math.round(responseTime),
         statusCode: error.response?.status,
-        error: error.message || 'Erro desconhecido'
+        error: error.message || 'Unknown error'
       }
     }
   }
@@ -53,7 +53,7 @@ export class ApiTestService {
     const baseUrl = API_CONFIG.BASE_URL
     
     try {
-      console.log('🔍 Testando conectividade com:', baseUrl)
+      console.log('🔍 Testing connectivity with:', baseUrl)
       
       const response = await fetch(baseUrl, {
         method: 'GET',
@@ -76,7 +76,7 @@ export class ApiTestService {
         isHealthy: false,
         endpoint: baseUrl,
         responseTime: Math.round(responseTime),
-        error: error.message || 'Erro de conectividade'
+        error: error.message || 'Connectivity error'
       }
     }
   }
@@ -90,7 +90,7 @@ export class ApiTestService {
     
     try {
       const url = buildUrl(endpoint, { pageNum: 1, itemsPerPage: 1 })
-      console.log('🔍 Testando endpoint de tubarões:', url)
+      console.log('🔍 Testing shark tracking endpoint:', url)
       
       const response = await api.get<any>(url)
       const responseTime = performance.now() - startTime
@@ -110,7 +110,7 @@ export class ApiTestService {
         endpoint: buildUrl(endpoint),
         responseTime: Math.round(responseTime),
         statusCode: error.response?.status,
-        error: error.message || 'Erro ao acessar tubarões'
+        error: error.message || 'Error accessing sharks'
       }
     }
   }
@@ -124,7 +124,7 @@ export class ApiTestService {
     
     try {
       const url = buildUrl(endpoint)
-      console.log('🔍 Testando latest position:', url)
+      console.log('🔍 Testing latest position:', url)
       
       const response = await api.get<any>(url)
       const responseTime = performance.now() - startTime
@@ -144,7 +144,7 @@ export class ApiTestService {
         endpoint: buildUrl(endpoint),
         responseTime: Math.round(responseTime),
         statusCode: error.response?.status,
-        error: error.message || 'Erro ao acessar latest position'
+        error: error.message || 'Error accessing latest position'
       }
     }
   }
@@ -153,7 +153,7 @@ export class ApiTestService {
    * Executa todos os testes
    */
   static async runAllTests() {
-    console.log('🚀 Iniciando testes de API...')
+    console.log('🚀 Starting API tests...')
     
     const results = {
       baseUrl: API_CONFIG.BASE_URL,
@@ -166,7 +166,7 @@ export class ApiTestService {
       }
     }
     
-    console.log('✅ Testes concluídos:', results)
+    console.log('✅ Tests completed:', results)
     return results
   }
 
@@ -190,7 +190,7 @@ export class ApiTestService {
       return { 
         success: false, 
         error: error.message.includes('CORS') 
-          ? 'Erro de CORS detectado' 
+          ? 'CORS error detected' 
           : error.message 
       }
     }

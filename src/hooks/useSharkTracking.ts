@@ -26,9 +26,9 @@ export const useSharkTracking = (autoRefetch: boolean = false, refreshInterval?:
       setSharks(response.items)
       setTotalRecords(response.totalRecords)
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'Erro desconhecido ao carregar dados'
+      const errorMessage = err instanceof Error ? err.message : 'Error loading shark tracking data: Unknown error'
       setError(errorMessage)
-      console.error('Erro ao buscar posições dos tubarões:', err)
+      console.error('Error loading shark tracking data:', err)
     } finally {
       setLoading(false)
     }

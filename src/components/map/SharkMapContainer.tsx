@@ -38,10 +38,10 @@ const SharkMapContainer = ({
             <Loader2 className="h-12 w-12 animate-spin text-blue-600" />
             <div className="text-center">
               <h3 className="text-lg font-semibold text-slate-900">
-                Carregando Mapa de Tubarões
+                Loading Shark Map
               </h3>
               <p className="text-sm text-slate-600 mt-1">
-                Obtendo posições mais recentes...
+                Getting latest positions...
               </p>
             </div>
           </div>
@@ -57,7 +57,7 @@ const SharkMapContainer = ({
         <Card className="max-w-md w-full p-6 shadow-lg">
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
-            <AlertTitle>Erro ao carregar dados</AlertTitle>
+            <AlertTitle>Error loading data</AlertTitle>
             <AlertDescription className="mt-2">
               {error}
             </AlertDescription>
@@ -70,12 +70,12 @@ const SharkMapContainer = ({
             {isRefreshing ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Tentando novamente...
+                Trying again...
               </>
             ) : (
               <>
                 <RefreshCw className="mr-2 h-4 w-4" />
-                Tentar Novamente
+                Try Again
               </>
             )}
           </Button>
@@ -94,21 +94,21 @@ const SharkMapContainer = ({
               <AlertCircle className="h-12 w-12 text-slate-400" />
             </div>
             <h3 className="text-lg font-semibold text-slate-900">
-              Nenhum tubarão encontrado
+              No shark found
             </h3>
             <p className="text-sm text-slate-600">
-              Não há dados de rastreamento disponíveis no momento.
+              No shark tracking data available at the moment.
             </p>
             <Button onClick={handleRefresh} disabled={isRefreshing}>
               {isRefreshing ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Atualizando...
+                  Updating...
                 </>
               ) : (
                 <>
                   <RefreshCw className="mr-2 h-4 w-4" />
-                  Atualizar
+                  Update
                 </>
               )}
             </Button>
@@ -135,7 +135,7 @@ const SharkMapContainer = ({
         >
           <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''} text-blue-600`} />
           <span className="text-slate-700 font-medium">
-            {isRefreshing ? 'Atualizando...' : 'Atualizar'}
+            {isRefreshing ? 'Updating...' : 'Update'}
           </span>
         </Button>
       </div>
@@ -146,7 +146,7 @@ const SharkMapContainer = ({
           <Alert variant="destructive" className="bg-white/95 backdrop-blur-md shadow-2xl border-red-200">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription className="text-xs">
-              Erro ao atualizar: {error}
+              Error updating: {error}
             </AlertDescription>
           </Alert>
         </div>

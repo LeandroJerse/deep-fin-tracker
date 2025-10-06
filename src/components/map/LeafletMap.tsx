@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { RastreamentoTubaroes } from '@/types/rastreamentoTubaroes'
+import { translateSharkBehavior, getBehaviorColor } from '@/utils/sharkTranslations'
 
 // Fix para os ícones padrão do Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl
@@ -17,14 +18,7 @@ interface LeafletMapProps {
   selectedBehavior?: string | null
 }
 
-const getBehaviorColor = (comportamento: string): string => {
-  const colors: Record<string, string> = {
-    'Transitando': '#3B82F6',  // Azul
-    'Busca': '#F59E0B',        // Laranja
-    'Forrageando': '#10B981',  // Verde
-  }
-  return colors[comportamento] || '#6B7280'
-}
+// Removed getBehaviorColor function - now imported from utils
 
 const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps) => {
   const mapContainer = useRef<HTMLDivElement>(null)
@@ -185,7 +179,7 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
         <div style="padding: 8px; min-width: 250px;">
           <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
             <h3 style="margin: 0; font-weight: 700; color: #0F172A; font-size: 16px;">
-              Tubarão #${shark.Id || 'N/A'}
+              Shark #${shark.Id || 'N/A'}
             </h3>
             <span style="
               background-color: ${color}; 
@@ -195,39 +189,39 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
               font-size: 11px;
               font-weight: 600;
             ">
-              ${shark.Comportamento || 'Desconhecido'}
+              ${translateSharkBehavior(shark.Comportamento || 'Desconhecido')}
             </span>
           </div>
           
           <div style="display: grid; gap: 8px; font-size: 13px;">
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">Coordenadas:</span>
+              <span style="color: #64748B; font-weight: 500;">Coordinates:</span>
               <span style="color: #0F172A; font-family: monospace;">${safeValue(shark.Lat, 4)}°, ${safeValue(shark.Lon, 4)}°</span>
             </div>
             
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">Temperatura:</span>
+              <span style="color: #64748B; font-weight: 500;">Temperature:</span>
               <span style="color: #0F172A; font-weight: 600;">${safeValue(shark.TempCc, 1)}°C</span>
             </div>
             
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">Probabilidade de Forrageio:</span>
+              <span style="color: #64748B; font-weight: 500;">Foraging Probability:</span>
               <span style="color: #0F172A; font-weight: 600;">${safeValue(shark.PForrageio ? shark.PForrageio * 100 : null, 0)}%</span>
             </div>
             
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">Clorofila Ambiente:</span>
+              <span style="color: #64748B; font-weight: 500;">Environmental Chlorophyll:</span>
               <span style="color: #0F172A;">${safeValue(shark.ChlorAAmbiente, 2)}</span>
             </div>
             
             <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px solid #E2E8F0;">
-              <span style="color: #64748B; font-weight: 500;">Anomalida do Nível do Mar:</span>
+              <span style="color: #64748B; font-weight: 500;">Sea Level Anomaly:</span>
               <span style="color: #0F172A;">${safeValue(shark.SshaAmbiente, 2) } cm</span>
             </div>
             
             <div style="padding-top: 8px; border-top: 2px solid #E2E8F0;">
               <span style="color: #94A3B8; font-size: 11px;">
-                ${shark.Tempo ? new Date(shark.Tempo).toLocaleString('pt-BR') : 'Data desconhecida'}
+                ${shark.Tempo ? new Date(shark.Tempo).toLocaleString('en-US') : 'Unknown date'}
               </span>
             </div>
           </div>
@@ -358,13 +352,13 @@ const LeafletMap = ({ sharks, onSharkSelect, selectedBehavior }: LeafletMapProps
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  Dados Incompletos
+                  Incomplete Data
                 </h3>
                 <p className="text-sm text-slate-600">
-                  Os tubarões neste conjunto não possuem coordenadas válidas para exibição no mapa.
+                  Sharks in this dataset do not have valid coordinates for map display.
                 </p>
                 <p className="text-xs text-slate-500 mt-2">
-                  Verifique a API ou tente outro filtro.
+                  Check the API or try another filter.
                 </p>
               </div>
             </div>

@@ -9,9 +9,9 @@ const SharkTrackingPage = () => {
   const navigate = useNavigate()
   
   const handleSharkSelect = (shark: RastreamentoTubaroes) => {
-    console.log('Tubarão selecionado:', shark)
-    // Aqui você pode adicionar lógica adicional quando um tubarão for selecionado
-    // Por exemplo, mostrar detalhes em um painel lateral, fazer zoom, etc.
+    console.log('Selected shark:', shark)
+    // Here you can add additional logic when a shark is selected
+    // For example, show details in a side panel, zoom, etc.
   }
 
   const handleGoBack = () => {
@@ -32,7 +32,7 @@ const SharkTrackingPage = () => {
                   variant="outline"
                   size="icon"
                   className="h-10 w-10 rounded-xl border-2 border-slate-300 bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-cyan-50 hover:border-blue-400 transition-all duration-300 shadow-md hover:shadow-lg group"
-                  aria-label="Voltar para página inicial"
+                  aria-label="Back to home page"
                 >
                   <ArrowLeft className="h-5 w-5 text-slate-600 group-hover:text-blue-600 transition-colors" />
                 </Button>
@@ -42,10 +42,10 @@ const SharkTrackingPage = () => {
                 </div>
                 <div>
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                    Rastreamento de Tubarões
+                    Shark Tracking
                   </h1>
                   <p className="text-xs text-slate-500">
-                    Monitoramento em tempo real
+                    Real-time monitoring
                   </p>
                 </div>
               </div>

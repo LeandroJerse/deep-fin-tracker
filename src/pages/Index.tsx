@@ -23,10 +23,10 @@ const Index = () => {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-                Rastreamento de Tubarões
+                Shark Tracking
               </h2>
               <p className="text-lg text-muted-foreground mb-6">
-                Visualize dados reais de monitoramento de tubarões com informações oceanográficas da API
+                Visualize real shark monitoring data with oceanographic information from the API
               </p>
             </div>
             
@@ -54,21 +54,21 @@ const Index = () => {
                     {/* Conteúdo */}
                     <div className="flex-1 text-center md:text-left">
                       <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                        Mapa Interativo em Tempo Real
+                        Real-Time Interactive Map
                       </h3>
                       <p className="text-blue-100 text-sm md:text-base leading-relaxed">
-                        Explore o mapa com dados reais da API, visualize posições dos tubarões, temperatura, comportamento e informações oceanográficas atualizadas
+                        Explore the map with real API data, visualize shark positions, temperature, behavior and updated oceanographic information
                       </p>
                     </div>
                     
                     {/* Botão */}
                     <div className="flex-shrink-0">
                       <Button
-                        onClick={() => navigate('/rastreamento')}
+                        onClick={() => navigate('/tracking')}
                         size="lg"
                         className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
                       >
-                        Ver Mapa
+                        View Map
                         <Waves className="ml-2 h-5 w-5 group-hover:animate-pulse" />
                       </Button>
                     </div>
@@ -78,15 +78,15 @@ const Index = () => {
                   <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
                     <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/30">
                       <Activity className="h-3 w-3" />
-                      Dados Reais da API
+                      Real API Data
                     </span>
                     <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/30">
                       <Thermometer className="h-3 w-3" />
-                      Temperatura do Oceano
+                      Ocean Temperature
                     </span>
                     <span className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-medium px-3 py-1.5 rounded-full border border-white/30">
                       <TrendingUp className="h-3 w-3" />
-                      Análise de Comportamento
+                      Behavior Analysis
                     </span>
                   </div>
                 </div>
@@ -100,15 +100,6 @@ const Index = () => {
       <ConceptSection />
       <ImpactSection />
       <Footer />
-
-      {/* Botão Flutuante de Teste de API */}
-      <Button
-        onClick={() => navigate('/api-test')}
-        className="fixed bottom-6 right-6 rounded-full shadow-2xl h-14 w-14 p-0 bg-slate-800 hover:bg-slate-700 z-50"
-        title="Testar API"
-      >
-        <Settings className="h-6 w-6" />
-      </Button>
     </div>
   );
 };
